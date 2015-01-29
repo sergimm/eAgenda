@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="idCompany" value="#{companyAdd.idCompany}"/>
+    </f:metadata>
+	
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h2>Add Company</h2>
+				<div id="addPage">
+				<h:form align="left">
+					<h:panelGrid>
+					    <div id="companyMod">
+		 					<div class="categoryline">
+		 						<div class="lineId">Name</div>
+		 						<div class="lineValue"><h:inputText id="name" value="#{companyAdd.name}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A name is required."/><h:message errorStyle="color:red" for="name"/></div>
+		 					</div>
+		 			
+		 					<div class="categoryline">
+		 						<div class="lineId">Superadministrador</div>
+		 						<div class="lineValue">
+		 							<h:selectOneMenu value="#{companyAdd.idSuperadministrador}">
+								        <f:selectItems value="#{companyAdd.superAdminList}" var="superadmin" itemLabel="#{superadmin.name}"  itemValue="#{superadmin.id}"  />
+								    </h:selectOneMenu>
+								</div>
+		 					</div>
+		 					<div class="categoryline returnBack">
+		 						<h:commandButton value="insert" action="#{companyAdd.createCompany}" />
+		 					</div>
+		 				</div>
+					</h:panelGrid>
+				</h:form>
+				</div>
+			</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addCompanyView" value="Add Company">
+								<f:param name="idCompany" value="#{company.id != null ? company.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="companyListView.xhtml?idCompany=-1">View Companies</a></li>		
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+

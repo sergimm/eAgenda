@@ -1,0 +1,91 @@
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+
+	<context-param>
+		<description>
+			Define the value returned by Application.getProjectStage(). Allowed values: Production, Development, 
+			UnitTest, SystemTest, Extension. Default value is Production.
+		</description>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+	<!-- Definir este parámetro es más cómodo y más visual que usar el <ui:remove> de Facelets. -->
+	<context-param>
+		<description>Do not render comments in facelets (xhtml) pages. Default is false.</description>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+    
+    <!-- The Welcome File List -->
+    <welcome-file-list>
+    	<welcome-file>listEventView.xhtml</welcome-file>
+    </welcome-file-list>
+    
+     <!-- Error page -->
+    <error-page>
+	    <location>/ErrorView.xhtml</location>
+	</error-page>
+	
+	<!-- Security filter to avoid access to protected SUPERADMIN views without authentication!! -->
+	<filter>
+	    <filter-name>AuthenticationAdminFilter</filter-name>
+	    <filter-class>managedbean.AuthenticationAdminFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationAdminFilter</filter-name>
+	    <url-pattern>/eventAdminListView.xhtml/*</url-pattern>
+	    
+	    <url-pattern>/categoryListView.xhtml/*</url-pattern>	    
+	    <url-pattern>/addCategoryView.xhtml/*</url-pattern>
+	    <url-pattern>/categoryDetailView.xhtml/*</url-pattern>
+	    <url-pattern>/modifyCategoryView.xhtml/*</url-pattern>
+	    
+	    <url-pattern>/companyListView.xhtml/*</url-pattern>
+	    <url-pattern>/addCompanyView.xhtml/*</url-pattern>
+	    <url-pattern>/companyDetailView.xhtml/*</url-pattern>
+	    <url-pattern>/modifyCompanyView.xhtml/*</url-pattern>
+	    
+	    <url-pattern>/eventAdminListView.xhtml/*</url-pattern>
+	    <url-pattern>/addEventView.xhtml/*</url-pattern>
+	    <url-pattern>/updateEventView.xhtml/*</url-pattern>
+	    <url-pattern>/addWordsToEventView.xhtml/*</url-pattern>
+	    <url-pattern>/addCategoryToEventView.xhtml/*</url-pattern>
+	    
+	    <url-pattern>/addressListView.xhtml/*</url-pattern>
+	    <url-pattern>/addAddressView.xhtml/*</url-pattern>
+	    <url-pattern>/addressDetailView.xhtml/*</url-pattern>
+	    <url-pattern>/modifyAddressView.xhtml/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- Security filter to avoid access to protected USER views without authentication!! -->
+	<filter>
+	    <filter-name>AuthenticationUserFilter</filter-name>
+	    <filter-class>managedbean.AuthenticationUserFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationUserFilter</filter-name>
+	   
+	    <url-pattern>/favoritesListView.xhtml/*</url-pattern>
+	    <url-pattern>/listAllSuggestionsView.xhtml/*</url-pattern>
+	    <url-pattern>/listAllOrdersView.xhtml/*</url-pattern>
+	    <url-pattern>/sendCommentView.xhtml/*</url-pattern>
+	    <url-pattern>/addRattingView.xhtml/*</url-pattern>
+	    <url-pattern>/addOrderView.xhtml/*</url-pattern>
+	    <url-pattern>/suggestView.xhtml/*</url-pattern>
+	</filter-mapping>
+
+</web-app>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{addOrder.idEvent}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Order tickets for an event</h3>
+				<div class="categoryline">
+ 					<h1><h:outputText value="#{addOrder.dataEvent.name}" /></h1>
+ 				</div>		
+				<h:form align="left" >
+					<div class="categoryline">
+ 						<div class="lineId">Number of tickets (from 1 to 5 each order):</div>
+ 						<div><i>Remember, all tickets are free thanks to InfoGroup2 and UOC. Reserve them responsibly!</i></div>
+ 						<div class="lineValue">
+							<h:selectOneMenu value="#{addOrder.newOrder}">
+						        <f:selectItems value="#{addOrder.arrayTickets}" var="ticket" itemLabel="#{ticket}"  itemValue="#{ticket}"  />
+						    </h:selectOneMenu>
+ 							<br /> 
+ 							<h:commandButton value="order tickets" action="#{addOrder.addNewOrder}" />
+ 						</div>
+ 					</div>			
+	 				
+	 				<div class="categoryline returnBack">
+ 						<h:link outcome="showEventView" value="Return to event" >
+ 							<f:param name="idEvent" value="#{addOrder.idEvent}" />
+ 						</h:link>
+ 					</div>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral"></div>
+		</ui:define>
+	</ui:composition>
+</html>
+

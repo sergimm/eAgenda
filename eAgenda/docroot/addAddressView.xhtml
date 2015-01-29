@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="idAddress" value="#{addressAdd.idAddress}"/>
+    </f:metadata>
+	
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h2>Add Address</h2>
+				<div id="addPage">
+				<h:form align="left">
+					<h:panelGrid>
+					    <div id="addressMod">
+		 					<div class="categoryline">
+		 						<div class="lineId">Street</div>
+		 						<div class="lineValue"><h:inputText id="street" value="#{addressAdd.street}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A street name is required."/><h:message errorStyle="color:red" for="street"/></div>
+		 					</div>
+		 					<div class="categoryline">
+		 						<div class="lineId">Number</div>
+		 						<div class="lineValue"><h:inputText id="num" value="#{addressAdd.number}" maxlength="3" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A number is required."/><h:message errorStyle="color:red" for="num"/></div>
+		 					</div>
+		 					<div class="categoryline">
+		 						<div class="lineId">City</div>
+		 						<div class="lineValue"><h:inputText id="city" value="#{addressAdd.city}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A city is required."/><h:message errorStyle="color:red" for="city"/></div>
+		 					</div>
+		 					
+		 					<div class="categoryline">
+		 						<div class="lineId">State</div>
+		 						<div class="lineValue"><h:inputText id="state" value="#{addressAdd.state}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A state is required."/><h:message errorStyle="color:red" for="state"/></div>
+		 					</div>
+		 					<div class="categoryline">
+		 						<div class="lineId">Country</div>
+		 						<div class="lineValue"><h:inputText id="pais" value="#{addressAdd.country}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A country name is required."/><h:message errorStyle="color:red" for="pais"/></div>
+		 					</div>
+		 					<div class="categoryline">
+		 						<div class="lineId">Zip code</div>
+		 						<div class="lineValue"><h:inputText id="codi" value="#{addressAdd.zip}" maxlength="5" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A code is required."/><h:message errorStyle="color:red" for="codi"/></div>
+		 					</div>
+		 					
+		 					<div class="categoryline returnBack">
+		 						<h:commandButton value="insert" action="#{addressAdd.createAddress}" />
+		 					</div>
+		 				</div>
+					</h:panelGrid>
+				</h:form>
+				</div>
+			</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addAddressView" value="Add Address">
+								<f:param name="idAddress" value="#{address.id != null ? address.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="addressListView.xhtml?idAddress=-1">View Address</a></li>								
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+

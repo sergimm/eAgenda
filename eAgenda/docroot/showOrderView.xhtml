@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idOrder" value="#{showOrder.idOrder}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Order summary</h3>
+					<div class="categoryline">
+						<div class="lineId">Event:</div>
+						<div class="lineValue"><h:outputText value="#{showOrder.dataOrder.eventOrder.name}" /></div>
+					</div>
+					<div class="categoryline">
+						<div class="lineId">User:</div>
+						<div class="lineValue"><h:outputText value="#{showOrder.dataOrder.userOrder.name}" /></div>
+					</div>
+					<div class="categoryline">
+						<div class="lineId">Number of tickets:</div>
+						<div class="lineValue"><h:outputText value="#{showOrder.dataOrder.numberoftickets}" /></div>
+					</div>
+					<div class="categoryline">
+						<div class="lineId">Date</div>
+						<div class="lineValue"><h:outputText value="#{showOrder.dataOrder.data}" /></div>
+					</div>
+					<div class="categoryline returnBack">						
+						<h:link outcome="listAllOrdersView" value="Return to orders" ></h:link>
+						<br /><br />
+						<h:link outcome="showEventView" value="Return to event" >
+							<f:param name="idEvent" value="#{showOrder.dataEvent.id}" />
+						</h:link>						
+					</div>
+				</div>
+
+			<div id="lateral"></div>
+		</ui:define>
+	</ui:composition>
+</html>
+

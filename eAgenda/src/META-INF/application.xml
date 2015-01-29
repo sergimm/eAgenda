@@ -1,0 +1,13 @@
+<application>
+  <display-name>infogroup2eagenda</display-name>
+  <module>
+    <web>
+      <web-uri>infogroup2eagenda.war</web-uri>
+      <context-root>/infogroup2eagenda</context-root>
+    </web>    
+  </module>
+  <module>
+    <ejb>infogroup2eagenda.jar</ejb>
+  </module>
+</application>
+

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="idAddress" value="#{addressShow.idAddress}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Address detail</h3>
+				<div id="detailPage">
+ 					<div class="categoryline">
+ 						<div class="lineId">ID</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.id}" /></div>
+ 					</div>
+ 					<div class="categoryline">
+ 					<div class="lineId">Street</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.street}" /></div>
+ 					</div>
+ 					<div class="categoryline">
+ 						<div class="lineId">Number</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.number}" /></div>
+ 					</div>
+ 					<div class="categoryline">
+ 						<div class="lineId">City</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.city}" /></div>
+ 					</div>
+ 					
+ 					<div class="categoryline">
+ 						<div class="lineId">State</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.state}" /></div>
+ 					</div>
+ 					<div class="categoryline">
+ 						<div class="lineId">Country</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.country}" /></div>
+ 					</div>
+ 					<div class="categoryline">
+ 						<div class="lineId">Zip code</div>
+ 						<div class="lineValue"><h:outputText value="#{addressShow.dataAddress.zip}" /></div>
+ 					</div>
+ 					
+ 					<div class="categoryline returnBack">
+ 						<h:link outcome="addressListView" value="Return to main list" >
+ 							<f:param name="idAddress" value="#{addressShow.dataAddress.id}" />
+ 						</h:link>
+ 					</div>
+ 				</div>
+ 			</div>
+			</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="email" value="#{mblogin.email}"/>
+    </f:metadata>
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>eAgenda</title>
+		<link href="resources/css/normalize.css" rel="stylesheet" type="text/css"/>
+		<link href="resources/css/estilos.css" rel="stylesheet" type="text/css"/>
+		<link href="resources/css/stylelogin.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+	<h:body>
+		<div id="content">
+			<header>
+				<div id="header">
+					<h1>eAgenda - InfoGroupII</h1>
+					<!--  <h2>La millor eAgenda Online!</h2>-->
+					<div id="auth">
+						<h:outputText value="Logged as " rendered="#{mblogin.tipusUsuari=='admin' || mblogin.tipusUsuari=='user'}"/><h:outputText value="#{mblogin.name}"></h:outputText>
+					    <h:form>
+					       <h:commandLink action="#{mblogin.logout}" >
+					          <h:outputText value="Log Out" rendered="#{mblogin.tipusUsuari=='admin' || mblogin.tipusUsuari=='user'}"/>
+					    	</h:commandLink>
+					    </h:form>
+					    <h:link value="Authenticate" outcome="welcomeView.xhtml" rendered="#{mblogin.tipusUsuari!='admin' and mblogin.tipusUsuari!='user'}"/>
+					    <br></br>
+					</div>	
+				</div>			
+			</header>
+			<nav>
+				<div id="menuPrincipal">
+					<ul>
+						<li><a href="listEventView.xhtml">Index</a></li>
+						<li><a href="RegisterView.xhtml">Register</a></li>				
+					</ul>
+				</div>
+			</nav>		
+   <div id="marco">
+     <div id="caja1" class="loginForm">
+      <ui:insert name="content">
+	   
+   		<h:form>
+   		  <h2>Administrator Access:</h2>
+    			<h:panelGrid border="1">
+        			<h:outputLabel value="Email: " style="font-weight:bold" />
+        			<h:inputText id="email" value="#{mblogin.email}" required="true" requiredMessage="Error: A name is required."/><h:message errorStyle="color:red" for="email"/> 
+        			<h:outputLabel value="Password: " style="font-weight:bold" />
+        			<h:inputSecret id="pass" value="#{mblogin.pass}" required="true" requiredMessage="Error: A password is required."/><h:message errorStyle="color:red" for="pass"/>
+        			<h:commandButton value="LoginAdmin" action="#{mblogin.loginAdmin}"/>
+    			</h:panelGrid>
+		</h:form>
+			
+      </ui:insert>				
+    </div>
+    <div id="caja2"  class="loginForm">
+    <ui:insert name="content">
+	   
+   		<h:form>
+   		  <h2>User Access:</h2>
+    			<h:panelGrid border="1">
+        			<h:outputLabel value="Email: " style="font-weight:bold" />
+        			<h:inputText id="email" value="#{mblogin.email}" required="true" requiredMessage="Error: A name is required."/><h:message errorStyle="color:red" for="email"/> 
+        			<h:outputLabel value="Password: " style="font-weight:bold" />
+        			<h:inputSecret id="pass" value="#{mblogin.pass}" required="true" requiredMessage="Error: A password is required."/><h:message errorStyle="color:red" for="pass"/>
+        			<h:commandButton value="LoginUser" action="#{mblogin.loginUser}"/>
+    			</h:panelGrid>
+		</h:form>
+			
+      </ui:insert>	
+    
+    </div>				
+   </div>
+			<footer>
+				<div id="footer">
+					<p>eAgenda - Copyright © InfoGroupII - UOC - 2014</p>
+				</div>
+			</footer>
+		</div>
+	</h:body>
+</html>

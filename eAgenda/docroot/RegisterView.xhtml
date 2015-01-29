@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h2>Register user</h2>
+				<div id="addPage">
+				<h:form align="left">
+					<h:panelGrid >
+					 <div id="categoryMod">
+					    <div class="categoryline">
+		 					<div class="lineId">Name</div>
+		 					<div class="lineValue"><h:inputText id="name" value="#{mbregister.name}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="name"/></div>
+		 			    </div>
+		 			    <div class="categoryline">
+		 					<div class="lineId">Surname</div>
+		 					<div class="lineValue"><h:inputText id="surname" value="#{mbregister.surname}" validator="#{mbValidate.validate}"></h:inputText><h:message errorStyle="color:red" for="surname"/></div>
+		 				</div>
+		 				<div class="categoryline">
+		 					<div class="lineId">Nif</div>
+		 					<div class="lineValue"><h:inputText id="nif" value="#{mbregister.nif}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="nif"/></div>
+		 				</div>
+		 				<div class="categoryline">
+		 					<div class="lineId">Language</div>
+							<div class="lineValue"><h:inputText id="language" value="#{mbregister.language}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="language"/></div>
+						</div>
+						<div class="categoryline">
+		 					<div class="lineId">Email</div>
+		 					<div class="lineValue"><h:inputText id="mail" value="#{mbregister.email}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="mail"/></div>
+		 				</div>
+						<div class="categoryline">
+		 					<div class="lineId">Password</div>
+		 					<div class="lineValue"><h:inputSecret id="pass" value="#{mbregister.password}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="pass"/></div>
+		 				</div>		
+		 				<div class="categoryline">
+		 					<div class="lineId">Street</div>
+		 					<div class="lineValue"><h:inputText id="street" value="#{mbregister.street}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="street"/></div>
+		 				</div>		
+		 					<div class="categoryline">
+		 					<div class="lineId">Number</div>
+		 					<div class="lineValue"><h:inputText id="num" value="#{mbregister.number}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="num"/></div>
+		 				</div>	
+		 					<div class="categoryline">
+		 					<div class="lineId">City</div>
+		 					<div class="lineValue"><h:inputText id="city" value="#{mbregister.city}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="city"/></div>
+		 				</div>	
+		 				
+		 				<div class="categoryline">
+		 					<div class="lineId">State</div>
+		 					<div class="lineValue"><h:inputText id="state" value="#{mbregister.state}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="state"/></div>
+		 				</div>	
+
+		 						
+		 				<div class="categoryline">
+		 					<div class="lineId">Country</div>
+		 					<div class="lineValue"><h:inputText id="country" value="#{mbregister.country}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="country"/></div>
+		 				</div>	
+		 					<div class="categoryline">
+		 					<div class="lineId">Zip</div>
+		 					<div class="lineValue"><h:inputText id="zip" value="#{mbregister.zip}" validator="#{mbValidate.validate}"/><h:message errorStyle="color:red" for="zip"/></div>
+		 				</div>	
+		 				<div class="categoryline returnBack">
+		 					<h:commandButton value="register" action="#{mbregister.addUser}" />
+		 				</div> 
+		 				
+					  </div>
+					</h:panelGrid>
+				</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+

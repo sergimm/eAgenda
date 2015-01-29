@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idOrders" value="#{orderList.idOrders}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>User Orders</h3>
+				<h:form align="left" >
+					<h:dataTable value="#{orderList.orderList}" var="order" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Event"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{order.eventOrder.name}" />
+	 					</h:column>	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Date"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{order.data}">
+	     						<f:convertDateTime pattern="dd/MM/yyyy"/>
+	     					</h:outputText>
+	 					</h:column>
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Tickets"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{order.numberoftickets}" />
+	 					</h:column>  					
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="View"/>
+	   						</f:facet>		
+							<h:link outcome="showOrderView" value="View" >
+								<f:param name="idOrder" value="#{order.id}" />						
+							</h:link>		
+	 					</h:column>	 					
+	 				</h:dataTable>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral"></div>
+		</ui:define>
+	</ui:composition>
+</html>

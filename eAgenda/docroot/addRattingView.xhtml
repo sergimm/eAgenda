@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{sendRatting.idEvent}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Add/Edit ratting to an event</h3>
+				<div class="categoryline">
+ 					<h1><h:outputText value="#{sendRatting.dataEvent.name}" /></h1>
+ 				</div>		
+				<h:form align="left" >
+					<div class="categoryline">
+ 						<div class="lineId">Ratting:</div>
+ 						<div class="lineValue">
+							<h:selectOneMenu value="#{sendRatting.newRatting}">
+						        <f:selectItems value="#{sendRatting.arrayRatting}" var="ratting" itemLabel="#{ratting}"  itemValue="#{ratting}"  />
+						    </h:selectOneMenu>
+ 							<br /> 
+ 							<h:commandButton value="add/edit ratting" action="#{sendRatting.addNewRatting}" />
+ 						</div>
+ 					</div>			
+	 				
+	 				<div class="categoryline returnBack">
+ 						<h:link outcome="showEventView" value="Return to event" >
+ 							<f:param name="idEvent" value="#{sendRatting.idEvent}" />
+ 						</h:link>
+ 					</div>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral">				
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="idCompany" value="#{companyShow.idCompany}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Company detail</h3>
+				<div id="detailPage">
+ 					<div class="categoryline">
+ 						<div class="lineId">ID</div>
+ 						<div class="lineValue"><h:outputText value="#{companyShow.dataCompany.id}" /></div>
+ 					</div>
+ 					<div class="categoryline">
+ 						<div class="lineId">Name</div>
+ 						<div class="lineValue"><h:outputText value="#{companyShow.dataCompany.name}" /></div>
+ 					</div>
+ 					
+ 					<div class="categoryline">
+ 						<div class="lineId">Superadministrador</div>
+ 						<div class="lineValue"><h:outputText value="#{companyShow.dataCompany.getSuperadministrator().name}" /></div>
+ 					</div>
+ 					<div class="categoryline returnBack">
+ 						<h:link outcome="companyListView" value="Return to main list" >
+ 							<f:param name="idCompany" value="#{companyShow.dataCompany.id}" />
+ 						</h:link>
+ 					</div>
+ 				</div>
+ 			</div>
+			</ui:define>
+	</ui:composition>
+</html>

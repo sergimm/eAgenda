@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idCategory" value="#{categoryList.idCategory}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Categories list</h3>
+				<h:form align="left" >
+					<h:dataTable value="#{categoryList.categoryList}" var="category" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Id"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{category.id}" />
+	 					</h:column>	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Category name"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{category.name}" />
+	 					</h:column> 					
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="View"/>
+	   						</f:facet>		
+							<h:link outcome="categoryDetailView" value="View" >
+								<f:param name="idCategory" value="#{category.id}" />						
+							</h:link>		
+	 					</h:column>
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="Modify"/>
+	   						</f:facet>			
+							<h:link outcome="modifyCategoryView" value="Modify" >
+								<f:param name="idCategory" value="#{category.id}" />						
+							</h:link>		
+	 					</h:column>
+	 				</h:dataTable>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addCategoryView" value="Add Category">
+								<f:param name="idCategory" value="#{category.id != null ? category.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="categoryListView.xhtml?idCategory=-1">View Categories</a></li>								
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

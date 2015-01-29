@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{eventAdminList.idEvent}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Event list (Admin)</h3>
+				<h:form align="left" >
+					<h:dataTable value="#{eventAdminList.eventList}" var="event" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Id"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{event.id}" />
+	 					</h:column>
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Name"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{event.name}" />
+	 					</h:column>	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Event start"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{event.initDate}">
+	     						<f:convertDateTime pattern="dd/MM/yyyy"/>
+	     					</h:outputText>
+	 					</h:column> 	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Event end"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{event.endDate}">
+	     						<f:convertDateTime pattern="dd/MM/yyyy"/>
+	     					</h:outputText>
+	 					</h:column> 
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Assigned categories"/>
+	   						</f:facet>
+  							<ul class="tableUL">
+			                <ui:repeat value="#{event.namesCategoriesEvent}" varStatus="loop">
+							    <li><h:outputText value="#{event.namesCategoriesEvent[loop.index]}" /></li>
+							</ui:repeat>
+							</ul> 
+	 					</h:column>
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="Modify"/>
+	   						</f:facet>			
+							<h:link outcome="updateEventView" value="Modify" >
+								<f:param name="idEvent" value="#{event.id}" />						
+							</h:link>		
+	 					</h:column>
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="Words"/>
+	   						</f:facet>			
+							<h:link outcome="addWordsToEventView" value="Edit words" >
+								<f:param name="idEvent" value="#{event.id}" />						
+							</h:link>		
+	 					</h:column>						
+	 					 	 					
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="Actions"/>
+	   						</f:facet>		
+							<h:link outcome="addCategoryToEventView.xhtml" value="Add/Remove categories" >
+								<f:param name="idEvent" value="#{event.id}" />						
+							</h:link>		
+	 					</h:column>
+	 				</h:dataTable>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addEventView" value="Add Event">
+								<f:param name="idEvent" value="#{event.id != null ? event.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="eventAdminListView.xhtml">View Events</a></li>
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

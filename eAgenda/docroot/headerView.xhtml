@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="tipusUsuari" value="#{mblogin.tipusUsuari}"/>
+    </f:metadata>
+    
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>eAgenda</title>
+		<link href="resources/css/normalize.css" rel="stylesheet" type="text/css"/>
+		<link href="resources/css/estilos.css" rel="stylesheet" type="text/css"/>
+		<link href="resources/css/stylelogin.css" rel="stylesheet" type="text/css"/>
+	</h:head>
+	<h:body>
+		<div id="content">
+			<header>
+				<div id="header">
+					<h1>eAgenda - InfoGroupII</h1>
+					<div id="auth">
+						<h:outputText value="Logged as " rendered="#{mblogin.tipusUsuari=='admin' || mblogin.tipusUsuari=='user'}"/><h:outputText value="#{mblogin.name}"></h:outputText>
+					    <h:form>
+					       <h:commandLink action="#{mblogin.logout}" >
+					          <h:outputText value="Desconectar" rendered="#{mblogin.tipusUsuari=='admin' || mblogin.tipusUsuari=='user'}"/>
+					    	</h:commandLink>
+					    </h:form>
+					    <h:link value="Authenticate" outcome="welcomeView.xhtml" rendered="#{mblogin.tipusUsuari!='admin' and mblogin.tipusUsuari!='user'}"/>
+					    <br></br>
+					</div>
+				</div>			
+			</header>
+			<nav>
+				<div id="menuPrincipal">
+					<ul>
+						<li><a href="listEventView.xhtml?idEvent=-1">Index</a></li>	
+						<li><h:link value="Register" outcome="RegisterView.xhtml" rendered="#{mblogin.tipusUsuari!='user' and mblogin.tipusUsuari!='admin'}"/></li>			
+						<li><h:link value="Administracio Category" outcome="categoryListView.xhtml?idCategory=-1" rendered="#{mblogin.tipusUsuari=='admin'}"/></li>
+						<li><h:link value="Administracio Company" outcome="companyListView.xhtml?idCompany=-1" rendered="#{mblogin.tipusUsuari=='admin'}"/></li>
+					    <li><h:link value="Administracio Event" outcome="eventAdminListView.xhtml?idEvent=-1" rendered="#{mblogin.tipusUsuari=='admin'}"/></li>
+					    <li><h:link value="Administracio Address" outcome="addressListView.xhtml?idAddress=-1" rendered="#{mblogin.tipusUsuari=='admin'}"/></li>			
+						<li><h:form><h:commandLink value="View Favorites" action="#{mbfavorites.favoritesList}" rendered="#{mblogin.tipusUsuari=='user'}"/></h:form></li>				
+						<li><h:link value="View User Orders" outcome="listAllOrdersView.xhtml?idOrders=-1" rendered="#{mblogin.tipusUsuari=='user'}"/></li>			
+						<li><h:link value="View Suggestions received" outcome="listAllSuggestionsView.xhtml?idSuggestion=-1" rendered="#{mblogin.tipusUsuari=='user'}"/></li>			
+					</ul>
+				</div>
+			</nav>		
+			<div id="main">
+				<ui:insert name="content">Content</ui:insert>								
+			</div>
+			<footer>
+				<div id="footer">
+					<p>eAgenda - Copyright © InfoGroupII - UOC - 2014</p>
+				</div>
+			</footer>
+		</div>
+	</h:body>
+</html>

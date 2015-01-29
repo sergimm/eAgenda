@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{eventAddWord.idEvent}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Categories assigned to event</h3>
+				<div class="categoryline">
+ 					<h1><h:outputText value="#{eventAddWord.eventName}" /></h1>
+ 				</div>		
+				<h:form align="left" >
+					<div class="categoryline">
+ 						<div class="lineId">Add new word</div>
+ 						<div class="lineValue"><h:inputText value="#{eventAddWord.newWordName}" />  <h:commandButton value="add new word" action="#{eventAddWord.addWordToEvent}" /></div>
+ 					</div>
+					<h:dataTable value="#{eventAddWord.wordsAssignedToEventList}" var="wordsAssigned" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Words assigned to this event"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{wordsAssigned.name}" />
+	 					</h:column>
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Actions"/>
+	   						</f:facet> 
+							<h:commandLink onclick="return confirm('Are you sure to remove this word?')" action="#{eventAddWord.removeWordToEvent}" value="Remove">
+								<f:setPropertyActionListener target="#{eventAddWord.idWordToAssign}" value="#{wordsAssigned.id}" />
+								<f:setPropertyActionListener target="#{eventAddWord.idEventToAssign}" value="#{eventAddWord.idEvent}" />
+							</h:commandLink>
+						</h:column>	
+	 				</h:dataTable>	 				
+	 				
+	 				<div class="categoryline returnBack">
+ 						<h:link outcome="eventAdminListView" value="Return to main list" >
+ 							<f:param name="idEvent" value="#{eventAddCategory.idEvent}" />
+ 						</h:link>
+ 					</div>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addEventView" value="Add Event">
+								<f:param name="idEvent" value="#{event.id != null ? event.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="eventAdminListView.xhtml?idEvent=-1">View Events</a></li>
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+

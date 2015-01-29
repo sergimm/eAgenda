@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idSuggestion" value="#{suggestList.idSuggestion}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Received user suggestions</h3>
+				<h:form align="left" >
+					<h:dataTable value="#{suggestList.suggestionList}" var="suggestion" bgcolor="#F1F1F1" bsuggestion="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Event"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{suggestion.eventSuggestion.name}" />
+	 					</h:column>	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Comment"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{suggestion.text}"></h:outputText>
+	 					</h:column>
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Sender"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{suggestion.userSuggestion.name}" />
+	 					</h:column>  					
+	 					<h:column>
+	 						<f:facet name="header">
+	   							<h:outputText value="View"/>
+	   						</f:facet>		
+							<h:link outcome="showEventView" value="View Event Suggested" >
+								<f:param name="idEvent" value="#{suggestion.eventSuggestion.id}" />						
+							</h:link>		
+	 					</h:column>	 					
+	 				</h:dataTable>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral"></div>
+		</ui:define>
+	</ui:composition>
+</html>

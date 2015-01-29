@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{suggest.idEvent}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Suggest this event to a registered friend!</h3>
+				<div class="categoryline">
+ 					<h1><h:outputText value="#{suggest.dataEvent.name}" /></h1>
+ 				</div>		
+				<h:form align="left" >
+					<div class="categoryline">
+ 						<div class="lineId">Friend email:</div>
+ 						<div><i>Note: Your friend will only receive this suggestion if he/she is registered in this application with the same email used in the input below</i></div>
+ 						<div class="lineValue"><h:inputText value="#{suggest.email}" /></div>
+ 					</div>
+					<div class="categoryline">
+ 						<div class="lineId">Comentary:</div>
+ 						<div class="lineValue"><h:inputText value="#{suggest.comentary}" size="100" maxlength="100" /> <br /> <h:commandButton value="send suggestion" action="#{suggest.addNewSuggestion}" /></div>
+ 					</div>			
+	 				
+	 				<div class="categoryline returnBack">
+ 						<h:link outcome="showEventView" value="Return to event" >
+ 							<f:param name="idEvent" value="#{suggest.idEvent}" />
+ 						</h:link>
+ 					</div>
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral">				
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+

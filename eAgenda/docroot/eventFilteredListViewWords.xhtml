@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<f:metadata>
+      <f:viewParam name="nameWord" value="#{eventFilteredList.nameWord}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Filter events by Word</h3>
+				<h:form align="left" >
+				<div class="categoryline">
+					<div class="categoryline">
+						<div class="lineId">Word to search:</div>
+		 				<div class="lineValue"><h:inputText name="nameWord" value="#{eventFilteredList.nameWord}" /></div>
+		 			</div>
+	 					<div class="categoryline">
+	 						<h:commandButton value="Filter" action="#{eventFilteredList.eventListWord}">
+	 							<f:param name="nameEvent" value="#{eventFilteredList.nameWord}" />
+	 						</h:commandButton>
+	 					</div>
+		 			</div>				
+					<h:dataTable value="#{eventFilteredList.eventList}" var="event" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Name"/>
+	   						</f:facet> 
+	   						<h:link outcome="showEventView" value="#{event.name}" >
+								<f:param name="idEvent" value="#{event.id}" />						
+							</h:link>
+	 					</h:column>	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Event start"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{event.initDate}">
+	     						<f:convertDateTime pattern="dd/MM/yyyy"/>
+	     					</h:outputText>
+	 					</h:column> 	 					
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Event end"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{event.endDate}">
+	     						<f:convertDateTime pattern="dd/MM/yyyy"/>
+	     					</h:outputText>
+	 					</h:column>
+	 				</h:dataTable>
+	 	  		</h:form>
+	 	    </div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li><a href="listEventView.xhtml?idEvent=-1">List all events</a></li>
+						<li><a href="eventFilteredListView.xhtml">Search events by Name</a></li>
+						<li><a href="eventFilteredListViewCategory.xhtml">Search events by Category</a></li>
+						<li><a href="eventFilteredListViewWords.xhtml">Search events by Word</a></li>
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{eventShow.idEvent}"/>
+      <f:viewParam name="idEvent" value="#{favoritesAdd.idEvent}" />
+      <f:viewParam name="idEvent" value="#{mbfavorites.idEvent}" />
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				
+				<div id="detailPage eventShow">
+ 					<div class="categoryline">
+ 						<h1>#{eventShow.dataEvent.name}</h1>
+ 					</div>
+ 					<div class="categoryline imageEvent">
+ 						<h:graphicImage border="0" url="resources/images/#{eventShow.dataEvent.picture}" width="650"/>
+ 					</div>				
+ 					
+ 					<div class="categoryline">
+ 						<div class="lineId">Event Description:</div>
+ 						<div class="lineValue"><h:outputText value="#{eventShow.dataEvent.description}" /></div>
+ 					</div>
+ 					
+ 					<div class="categoryline">
+ 						<div class="lineId">User comments</div>
+ 						<ul>	
+							<ui:repeat var="comment" value="${eventShow.comments}">
+								<li><h:outputText value="Published by: ${comment.userComment.name} -- ${comment.text}"/></li>
+							</ui:repeat>
+						</ul>
+ 					</div>
+ 					
+ 					<div class="categoryline returnBack">
+ 						<h:link outcome="eventFilteredListView" value="Return back"></h:link>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			<div id="lateral">
+				<h3>Other Info</h3>
+				<div id="opAdmin">
+					<div class="categoryline">
+ 						<div class="lineId">rating</div>
+ 						<div class="lineValue"><h:outputText value="#{eventShow.dataEvent.ratting}" /></div>
+ 					</div> 					
+					<div class="categoryline">
+ 						<div class="lineId">Address</div>
+ 						<div class="lineValue"><h:outputText value="#{eventShow.dataEvent.address}" /></div>
+ 					</div> 					
+ 					<div class="categoryline">
+ 						<div class="lineId">Start date</div>
+ 						<div class="lineValue"><h:outputText value="#{eventShow.dataEvent.initDate}"><f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></div>
+ 					</div> 					
+ 					<div class="categoryline">
+ 						<div class="lineId">End Date</div>
+ 						<div class="lineValue"><h:outputText value="#{eventShow.dataEvent.endDate}"><f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></div>
+ 					</div>
+					
+					<div class="eventOperations">
+						<p>Event Operations</p>
+						<h:panelGroup rendered="#{eventShow.isUserAuthenticated()}" >  
+						    <div>
+						    	<h:link value="Add/Modify comment" outcome="sendCommentView.xhtml" >
+						    		<f:param name="idEvent" value="#{eventShow.idEvent}" />
+						    	</h:link>
+						    </div>
+
+							<div>
+							  <h:form>
+								<h:commandLink value="Add to favorites" action="#{favoritesAdd.addToFavorites}">
+								  <f:param name="idEvent" value="#{eventShow.idEvent}"/>
+								</h:commandLink>
+							  </h:form>	
+							</div>
+							<div>
+						    	<h:link value="Add/Modify ratting" outcome="addRattingView.xhtml" >
+						    		<f:param name="idEvent" value="#{favoritesAdd.idEvent}" />
+						    	</h:link>
+						    </div>
+						    <div>
+						    	<h:link value="Order event tickets" outcome="addOrderView.xhtml" >
+						    		<f:param name="idEvent" value="#{eventShow.idEvent}" />
+						    	</h:link>
+						    </div>
+						     <div>
+						    	<h:link value="Suggest event to a friend" outcome="suggestView.xhtml" >
+						    		<f:param name="idEvent" value="#{eventShow.idEvent}" />
+						    	</h:link>
+						    </div>
+						</h:panelGroup> 
+						<h:panelGroup rendered="#{!eventShow.isUserAuthenticated()}" >  
+						    <div><a href="welcomeView.xhtml">You need to authenticate (as an user) to add comments,ratings, order tickets or add as a favorite</a></div>
+						</h:panelGroup>			
+					</div>
+				</div>
+			</div>
+			</ui:define>
+	</ui:composition>
+</html>

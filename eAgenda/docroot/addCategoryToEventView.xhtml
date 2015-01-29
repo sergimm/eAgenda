@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<f:metadata>
+      <f:viewParam name="idEvent" value="#{eventAddCategory.idEvent}"/>
+    </f:metadata>
+
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h3>Categories assigned to event</h3>
+				<div class="categoryline">
+ 					<h1><h:outputText value="#{eventAddCategory.eventName}" /></h1>
+ 				</div>
+				<h:form align="left" >
+					<h:dataTable value="#{eventAddCategory.categoriesAssignedToEventList}" var="categoriesAssigned" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Categories assigned to this event"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{categoriesAssigned.name}" />
+	 					</h:column>
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Actions"/>
+	   						</f:facet> 
+							<h:commandLink onclick="return confirm('Are you sure to assign this category?')" action="#{eventAddCategory.removeCategoryToEvent}" value="Remove">
+								<f:setPropertyActionListener target="#{eventAddCategory.idCategoryToAssign}" value="#{categoriesAssigned.id}" />
+								<f:setPropertyActionListener target="#{eventAddCategory.idEventToAssign}" value="#{eventAddCategory.idEvent}" />
+							</h:commandLink>
+						</h:column>	
+	 				</h:dataTable>
+	 				
+	 				<h:dataTable value="#{eventAddCategory.categoryList}" var="categoriesNOTAssigned" bgcolor="#F1F1F1" border="10" first="0" width="100%" frame="hsides" rules="all"  columnClasses="catName,catView,CatMod"  >
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Categories avaiable to assign"/>
+	   						</f:facet> 
+	     					<h:outputText value="#{categoriesNOTAssigned.name}" />
+	 					</h:column>	
+	 					<h:column>
+	   						<f:facet name="header">
+	   							<h:outputText value="Actions"/>
+	   						</f:facet> 
+							<h:commandLink onclick="return confirm('Are you sure to assign this category?')" action="#{eventAddCategory.addCategoryToEvent}" value="Add">
+								<f:setPropertyActionListener target="#{eventAddCategory.idCategoryToAssign}" value="#{categoriesNOTAssigned.id}" />
+								<f:setPropertyActionListener target="#{eventAddCategory.idEventToAssign}" value="#{eventAddCategory.idEvent}" />
+							</h:commandLink>
+						</h:column>	
+	 				</h:dataTable>
+	 				
+	 	  		</h:form>
+	 	  	</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addEventView" value="Add Event">
+								<f:param name="idEvent" value="#{event.id != null ? event.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="eventAdminListView.xhtml?idEvent=-1">View Events</a></li>
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>

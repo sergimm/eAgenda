@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+	
+	<f:metadata>
+      <f:viewParam name="idCategory" value="#{categoryAdd.idCategory}"/>
+    </f:metadata>
+	
+	<ui:composition template="./headerView.xhtml">
+		<ui:define name="content">
+			<div id="listadoPrincipal">
+				<h2>Add Category</h2>
+				<div id="addPage">
+				<h:form align="left">
+					<h:panelGrid>
+					    <div id="categoryMod">
+		 					<div class="categoryline">
+		 						<div class="lineId">Name</div>
+		 						<div class="lineValue"><h:inputText id="name" value="#{categoryAdd.name}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A name is required."/><h:message errorStyle="color:red" for="name"/></div>
+		 					</div>
+		 					<div class="categoryline">
+		 						<div class="lineId">Description</div>
+		 						<div class="lineValue"><h:inputText id="description" value="#{categoryAdd.description}" validator="#{mbValidate.validate}" required="true" requiredMessage="Error: A description is required."/><h:message errorStyle="color:red" for="description"/></div>
+		 					</div>
+		 					<div class="categoryline">
+		 						<div class="lineId">Superadministrador</div>
+		 						<div class="lineValue">
+		 							<h:selectOneMenu value="#{categoryAdd.idSuperadministrador}">
+								        <f:selectItems value="#{categoryAdd.superAdminList}" var="superadmin" itemLabel="#{superadmin.name}"  itemValue="#{superadmin.id}"  />
+								    </h:selectOneMenu>
+								</div>
+		 					</div>
+		 					<div class="categoryline returnBack">
+		 						<h:commandButton value="insert" action="#{categoryAdd.createCategory}" />
+		 					</div>
+		 				</div>
+					</h:panelGrid>
+				</h:form>
+				</div>
+			</div>
+			<div id="lateral">
+				<h3>Operations</h3>
+				<div id="opAdmin">
+					<ul>
+						<li>
+							<h:link outcome="addCategoryView" value="Add Category">
+								<f:param name="idCategory" value="#{category.id != null ? category.id : '0'}" />
+							</h:link>								
+						</li>
+						<li><a href="categoryListView.xhtml?idCategory=-1">View Categories</a></li>								
+					</ul>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</html>
+
